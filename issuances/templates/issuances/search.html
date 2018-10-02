@@ -1,0 +1,427 @@
+    <!DOCTYPE html>
+    {% load static %}
+    <html lang="en">
+    <head>
+
+            <!-- Required meta tags -->
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <title>DCHR | E-DPM | Electronic District Personnel Manual</title>
+            <!-- Plugins CSS -->
+            <link href={% static 'css/plugins/plugins.css' %} rel="stylesheet">
+            <!--dz parallaxer-->
+            <link href={% static 'dzsparallaxer/dzsparallaxer.css' %} rel="stylesheet">
+            <link href={% static 'dzsparallaxer/scroller.css' %} rel="stylesheet">
+            <link href={% static 'dzsparallaxer/advancedscroller/plugin.css' %} rel="stylesheet">
+            <!--smart form css-->
+            <link href={% static 'smart-form/contact-recaptcha/css/smart-forms.css' %} rel="stylesheet">
+            <!-- load css for cubeportfolio -->
+            <link rel="stylesheet" type="text/css" href={% static 'cubeportfolio/css/cubeportfolio.min.css' %}>
+            <link href={% static 'css/style-leftNavbar.css' %} rel="stylesheet">
+            <!--LOAD for INSTANTSEARCH -->
+            <link rel="stylesheet" type="text/css" href={% static 'css/instantsearch.min.css' %}>
+
+        <style type="text/css">
+            .jumbotron {
+                background: linear-gradient( rgba(19, 45, 68, 0.7), rgba(19, 45, 68, 0.7) ), url({% static 'images/books.jpg' %});
+                background-attachment: fixed;
+                background-color: rgba(0, 0, 0, .5);
+                background-position-y: 1200px;
+                color: white;
+            }
+            .hits h3 {
+                font-size: 1em;
+                font-weight: bold;
+                margin-bottom: 0;
+            }
+            #chapters em {
+                font-style:normal;
+                color: #072c3c;
+                font-weight: bold;
+                background-color: #d7f3ff;
+            }
+            #issuances em{
+                font-style:normal;
+                color: #bf0000;
+                font-weight: bold;
+                background-color: #ffe7e9;
+            }
+            .hits p{
+                color: #333;
+                padding-bottom: 0.5em;
+            }
+            .search-input-wrapper{
+                display: flex;
+                flex-flow: column wrap;
+                align-items: center;
+                width: 100vw;
+                position: relative;
+            }
+            .ais-search-box--input {
+                padding-top: 1em; padding-bottom: 1em;
+                padding-left: 3em;
+                height: 100%;
+                width: 100%;
+                border-radius: 0px;
+                box-shadow: 1px 1px 5px 1px #072c3c;
+                text-align:center;
+            }
+            .ais-search-box--loading-indicator-wrapper svg, .ais-search-box--magnifier svg {
+                vertical-align: middle;
+                margin-top: .6em;
+                height: 30px;
+                width: 50px;
+            }
+            .ais-search-box--reset svg {
+                width: 0px;
+            }
+            .ais-search-box--magnifier {
+                top: 7px;
+                left: 7px;
+                border-width:0px;
+                padding-left: 0px;
+                padding-right: 0px;
+            }
+            .ais-search-box--magnifier:hover{
+                top: 7px;
+                left: 7px;
+                border-width:0px;
+                padding-left: 0px;
+                padding-right: 0px;
+                fill: #1b6b87;
+            }
+            .search-header{
+            	margin-bottom: 1em;
+            }
+            .ais-refinement-list--count{
+                font-style: italic;
+                margin-left: 4px;
+                color: rgb(100,100,100,0.6);
+            }
+            .ais-refinement-list--count:after{
+            	content: " hits";
+            }
+            .ais-refinement-list--checkbox{
+            	content: "Ch: ";
+            }
+            .ais-refinement-list--item{
+                margin-left: 10px; margin-right: 10px;
+            }
+    		@import url('https://fonts.googleapis.com/css?family=Asap:400,500,700');
+    		p.toggle {
+    			margin: 0;
+    			width: 100%;
+    			height: 100%;
+    			display: flex;
+    			position: absolute;
+    			left: 0;
+    			top: 0;
+    			font-family: 'Asap', sans-serif;
+    			background: white;
+    		}
+
+    		#toggle-button {
+    			width: 160px;
+    			height: 36px;
+    			margin: auto;
+    			position: relative;
+    			border-radius: 6px;
+    			overflow: hidden;
+    			user-select: none;
+    			cursor: pointer;
+    		}
+
+    		.inner-toggle-button {
+    			position: absolute;
+    			left: 0;
+    			top: 0;
+    			width: inherit;
+    			height: inherit;
+    			text-transform: uppercase;
+    			font-size: .6em;
+    			letter-spacing: .2em;
+    		}
+
+    		.inner-toggle-button:first-child {
+    			background: #e9e9e9;
+    			color: #a9a9a9;
+    		}
+
+    		.inner-toggle-button:nth-child(2) {
+    			background: dodgerblue;
+    			color: white;
+    			clip-path: inset(0 50% 0 0);
+    			transition: .3s cubic-bezier(0,0,0,1);
+    		}
+
+    		.toggle {
+    			width: 50%;
+    			position: absolute;
+    			height: inherit;
+    			display: flex;
+    			box-sizing: border-box;
+    		}
+
+    		.toggle p {
+    			margin: auto;
+    		}
+
+    		.toggle:nth-child(1) {
+    			right: 0;
+    		}
+            .ais-header{
+                color:rgb(255, 255, 255, 0.5);
+                padding-left: 10px; padding-right: 10px; padding-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body class="push-left" data-spy="scroll" data-target="#navbarsspy" data-offset="5">
+        <div id="preloader">
+            <div id="preloader-inner"></div>
+        </div><!--/preloader-->
+
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top navbar-left">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsspy" aria-controls="navbarsspy" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" data-scroll href="/"><img src={% static 'images/logo-light.png' %} alt="DCHR Logo"></a>
+
+                <div class="collapse navbar-collapse" id="navbarsspy">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a data-scroll class="nav-link active" href="#home">Search</a></li>
+                        <li class="nav-item"><a data-scroll class="nav-link" href="/#quicknav">Quick Nav</a></li>
+                        <li style="border-top: 1px solid rgb(255,255,255,0.1); color:rgb(255,255,255,0.5); text-align:center; padding:10px 10px" id="refine-navbar-label">Refine Search</li>
+    					    <div class="left-column">
+    							<div id="c-refinement-list"></div>
+    							<div id="i-refinement-list"></div>
+    					    </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        <!-- Jumbotron -->
+        <div class="jumbotron jumbotron-fluid" id="home">
+          <div class="container jumbocontent">
+            <h1 class="display-4" style="color:white;">Search</h1>
+            <p class="lead">
+            	Search through E-DPM Chapters and Issuances.
+            </p>
+    		<div class="ais-search-box">
+    		        <input class="form-control ais-search-box--input" id="search-input" placeholder="What are you looking for?" autocapitalize="off" autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="text" value="">
+
+    		        <span class="ais-search-box--magnifier-wrapper">
+    		            <button name="search-submit" id="search-submit-button" type="submit" class="ais-search-box--magnifier" value="true">
+    		                <svg xmlns="https://www.w3.org/2000/svg" id="sbx-icon-search-13" viewBox="0 0 40 40" width="100%" height="100%">
+    		                    <path xmlns="https://www.w3.org/2000/svg" data-name="find  magnify  magnifying  magnifying glass  search" class="cls-1" d="M142.95,357.536l-1.414,1.414a2,2,0,0,1-2.829,0l-6.657-6.657a1.984,1.984,0,0,1-.374-2.266l-1.744-1.744a13.033,13.033,0,1,1,2.351-2.351l1.744,1.744a1.984,1.984,0,0,1,2.266.374l6.657,6.657A2,2,0,0,1,142.95,357.536ZM122,329a9,9,0,1,0,9,9A9,9,0,0,0,122,329Z" transform="translate(-108.266 -324.265)"/>
+    		                </svg>
+    		            </button>
+    		        </span>
+    		</div>
+          </div>
+        </div>
+        <!-- /Jumbotron -->
+    <div id="toggle-button">
+        <div class="inner-toggle-button">
+            <div class="toggle">
+                <p>Issuances</p>
+            </div>
+            <div class="toggle">
+                <p>Chapters</p>
+            </div>
+        </div>
+        <div class="inner-toggle-button" id='toggle-container'>
+            <div class="toggle">
+                <p>Issuances</p>
+            </div>
+            <div class="toggle">
+                <p>Chapters</p>
+            </div>
+        </div>
+    </div>
+    	<!-- SEARCH RESULTS-->
+    	<div class="container">
+    		<div id="search-results">
+    		    <div class="hits search-header" id=chapsearch-header style="position:relative"><h1>Chapters</h1></div>
+    		    <div class="hits" id="chapters" style="position:relative"></div>
+    		</div>
+    		<div id="i-search-results">
+    		    <div class="hits i-search-header" id=chapsearch-header style="position:relative"><h1>Issuances</h1></div>
+    		    <div class="hits" id="issuances" style="position:relative"></div>
+    		</div>
+    	</div>
+    	<!-- END SEARCH RESULTS-->
+
+        <footer class='footer'>
+            <div class='container'>
+                <div class='row'>
+                   <div class="col-md-6">
+                       <ul class="list-inline text-sm-center footer-nav">
+                           <li class="list-inline-item">
+                               <a href="https://dchr.dc.gov/">Return to dchr.dc.gov</a>
+                           </li>
+                       </ul>
+                   </div>
+                    <div class='col-md-6 text-center'>
+                        <span>District of Columbia Department of Human Resources</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <a href="#" class="back-to-top hidden-xs-down" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+            <!-- jQuery first, then Tether, then Bootstrap JS. -->
+            <script type="text/javascript" src={% static 'js/popper.min.js' %}></script>
+            <script type="text/javascript" src={% static 'js/plugins/plugins.js' %}></script>
+            <script type="text/javascript" src={% static 'js/onepage-leftNav.js' %}></script>
+            <!--dz parallaxer-->
+            <script type="text/javascript" src={% static 'dzsparallaxer/dzsparallaxer.js' %}></script>
+            <script type="text/javascript" src={% static 'dzsparallaxer/scroller.js' %}></script>
+            <script type="text/javascript" src={% static 'dzsparallaxer/advancedscroller/plugin.js' %}></script>
+            <!-- load cubeportfolio -->
+            <script type="text/javascript" src={% static 'cubeportfolio/js/jquery.cubeportfolio.min.js' %}></script>
+            <script type="text/javascript" src={% static 'js/folio-load-more.js' %}></script>
+            <script type="text/javascript" src={% static 'js/testimonials.js' %}></script>
+    		<script type="text/javascript">
+                var getUrlParameter = function getUrlParameter(sParam) {
+                    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                        sURLVariables = sPageURL.split('&'),
+                        sParameterName,
+                        i;
+
+                    for (i = 0; i < sURLVariables.length; i++) {
+                        sParameterName = sURLVariables[i].split('=');
+
+                        if (sParameterName[0] === sParam) {
+                            return sParameterName[1] === undefined ? true : sParameterName[1];
+                        }
+                    }
+                };
+                var query = getUrlParameter('q');
+                var qstring = string(query);
+    			document.getElementById('search-input').value = query;
+    		</script>
+            <!--Search Hits Template -->
+            {% verbatim %}
+            <script type="text/html" id="hit-template">
+                <div class="hit">
+                    <div class="hit-content">
+                        <h3 class="hit-title"><a href=/chapter/{{chapter}}#section-{{num}}>{{num}} {{{_highlightResult.title.value}}}</a></h3>
+                        <p class="hit-description">{{{_snippetResult.content.value}}}</p>
+                    </div>
+                </div>
+            </script>
+            <script type="text/html" id="hit-template-i">
+                <div class="hit">
+                    <div class="hit-content">
+                        <h3 class="hit-title"><a href=/issuances/{{slug}}>{{{_highlightResult.title.value}}}</a></h3>
+                        <p class="hit-description">{{{_snippetResult.contents.value}}}</p>
+                    </div>
+                </div>
+            </script>
+            {% endverbatim %}
+        </body>
+
+    <script type="text/javascript" src={% static 'js/instantsearch.min.js' %}></script>
+    <script type="text/javascript">
+    	var chapters = instantsearch({
+    	  appId: 'Y2PPY80XX6',
+    	  apiKey: '72b0a96c4af167f1cabb785757b0cb37',
+    	  indexName: 'Chapters',
+    	  urlSync: true,
+    	  searchFunction: function(helper) {
+    	    var query = chapters.helper.state.query;
+    	    issuances.helper.setQuery(query);
+    	    issuances.helper.search();
+    	    helper.search();
+    	  },
+    	  searchParameters: {
+    	    attributesToSnippet: ["content:100"],
+    	    snippetEllipsisText: '...',
+    	    hitsPerPage: 50
+    	  }
+    	});
+
+    	var issuances = instantsearch({
+    	  appId: 'Y2PPY80XX6',
+    	  apiKey: '72b0a96c4af167f1cabb785757b0cb37',
+    	  indexName: 'Issuances',
+    	  searchParameters: {
+    	    attributesToSnippet: ["contents:100"],
+    	    snippetEllipsisText: '...',
+    	    hitsPerPage: 50
+    	  }
+    	});
+
+    	var chaptersHits = instantsearch.widgets.hits({
+    	  container: document.querySelector('#chapters'),
+    	  templates: {
+    	      item: document.getElementById('hit-template').innerHTML,
+    	      empty: "We could not find <em>\"{{query}}\"</em> in any chapters",
+    	    }
+    	});
+
+    	var issuancesHits = instantsearch.widgets.hits({
+    	  container: document.querySelector('#issuances'),
+    	  templates: {
+    	      item: document.getElementById('hit-template-i').innerHTML,
+    	      empty: "We could not find <em>\"{{query}}\"</em> in any issuances",
+    	    }
+    	});
+
+    	var searchBox = instantsearch.widgets.searchBox({
+    	  container: document.querySelector('#search-input'),
+    	  magnifier: false,
+    	  loadingIndicator: true,
+    	});
+
+    	var cRefList = instantsearch.widgets.refinementList({
+    		container: '#c-refinement-list',
+    		attributeName: 'chapter',
+    		templates: {
+    			header: 'Chapters'
+    		}
+    	});
+
+    	var iRefList = instantsearch.widgets.refinementList({
+    		container: '#i-refinement-list',
+    		attributeName: 'chapter_searchable',
+    		templates: {
+    			header: 'Chapters'
+    		}
+    	});
+
+    	chapters.addWidget(chaptersHits);
+    	chapters.addWidget(searchBox);
+    	chapters.addWidget(cRefList);
+    	issuances.addWidget(iRefList);
+    	issuances.addWidget(issuancesHits);
+    	issuances.start();
+    	chapters.start();
+    </script>
+    <script type="text/javascript">
+        document.getElementById('i-search-results').style.display="none";
+        document.getElementById('i-refinement-list').style.display="none";
+    	var toggle = document.getElementById('toggle-button');
+    	var toggleContainer = document.getElementById('toggle-container');
+    	var toggleNumber;
+    	toggle.addEventListener('click', function() {
+    		toggleNumber = !toggleNumber;
+    		if (toggleNumber) {
+    			toggleContainer.style.clipPath = 'inset(0 0 0 50%)';
+    			toggleContainer.style.backgroundColor = '#D74046';
+    			document.getElementById('search-results').style.display="none";
+    			document.getElementById('c-refinement-list').style.display="none";
+    			document.getElementById('i-search-results').style.display="block";
+    			document.getElementById('i-refinement-list').style.display="block";
+    		} else {
+    			toggleContainer.style.clipPath = 'inset(0 50% 0 0)';
+    			toggleContainer.style.backgroundColor = 'dodgerblue';
+    			document.getElementById('search-results').style.display="block";
+    			document.getElementById('c-refinement-list').style.display="block";
+    			document.getElementById('i-search-results').style.display="none";
+    			document.getElementById('i-refinement-list').style.display="none";
+    		}
+    	});
+    </script>
+
+    </html>

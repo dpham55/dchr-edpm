@@ -1,0 +1,32 @@
+{% extends "admin/base.html" %}
+
+{% block extrastyle %}
+<style>
+    #header{
+    	background: #002b39;
+    	color: #c9faff;
+    }
+
+	#branding h1, #branding h1 a:link, #branding h1 a:visited {
+	    color: #ffffff;
+	    font-weight: bold;
+	    font-family: "Century Gothic", sans-serif;
+	}
+
+	.module h2, .module caption, .inline-group h2{
+		background: #7b7b7b;
+	}
+
+	div.breadcrumbs {
+		background: #3a454a;
+	}
+</style>
+{% endblock %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">E-DPM | Administration</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

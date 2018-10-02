@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>DCHR | E-DPM | Electronic District Personnel Manual</title>
+        <!-- Plugins CSS -->
+        <link href={% static 'css/plugins/plugins.css' %} rel="stylesheet">
+        <!--dz parallaxer-->
+        <link href={% static 'dzsparallaxer/dzsparallaxer.css' %} rel="stylesheet">
+        <link href={% static 'dzsparallaxer/scroller.css' %} rel="stylesheet">
+        <link href={% static 'dzsparallaxer/advancedscroller/plugin.css' %} rel="stylesheet">
+        <!-- load css for cubeportfolio -->
+        <link rel="stylesheet" type="text/css" href={% static 'cubeportfolio/css/cubeportfolio.min.css' %}>
+        <link href={% static 'css/style-leftNavbar.css' %} rel="stylesheet">
+        <!--LOAD for INSTANTSEARCH -->
+        <link rel="stylesheet" type="text/css" href={% static 'css/instantsearch.min.css' %}>
+
+        <style type="text/css">
+        .center-img {
+            display: block;
+            margin: 0 auto;
+            opacity: 1;
+            width: 100%;
+            height: auto;
+            transition: .5s ease;
+            backface-visibility: hidden;
+        }
+        .center-img:hover {
+            display: block;
+            margin: 0 auto;
+            opacity: .25;
+            width: 100%;
+            height: auto;
+            transition: .5s ease;
+            backface-visibility: hidden;
+        }
+        h5 a{
+            color:#111;
+        }
+        h5 a:hover{
+            color:#d4d4d4;
+        }
+        .search-input-wrapper{
+            display: flex;
+            flex-flow: column wrap;
+            align-items: center;
+            width: 100vw;
+            position: relative;
+        }
+        .ais-search-box--input {
+            padding-top: 1em; padding-bottom: 1em;
+            padding-left: 3em;
+            height: 100%;
+            width: 100%;
+            border-radius: 0px;
+            box-shadow: 1px 1px 5px 1px #072c3c;
+            text-align:center;
+        }
+        .ais-search-box--loading-indicator-wrapper svg, .ais-search-box--magnifier svg {
+            vertical-align: middle;
+            margin-top: .6em;
+            height: 30px;
+            width: 50px;
+        }
+        .ais-search-box--reset svg {
+            width: 0px;
+        }
+        @media (max-width: 767px){
+            .hits {
+                display:none;
+        }}
+        @media (max-height: 767px){
+            .hits{
+                display:none;
+        }}
+        .hits {
+            padding-top: 0; padding-bottom: 1px; padding-left: 1em; padding-right: 1em;
+            font-size: 1em;
+            background-color: white;
+            margin-left: 2em; margin-right: 2em;
+            overflow: visible;
+        }
+        .hits h3 {
+            font-size: 1em;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+        .hits em {
+            font-style:normal;
+            color: #072c3c;
+            font-weight: bold;
+            background-color: #d7f3ff;
+        }
+        .hits p{
+            color: #333;
+        }
+        .ais-hits{
+            margin: 0 auto;
+        }
+        .ais-search-box--magnifier {
+            top: 7px;
+            left: 7px;
+            border-width:0px;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+        .ais-search-box--magnifier:hover{
+            top: 7px;
+            left: 7px;
+            border-width:0px;
+            padding-left: 0px;
+            padding-right: 0px;
+            fill: #1b6b87;
+        }
+        .search-header{
+            padding: 0.5em;
+        }
+        .i-search-header{
+            padding-top: 0; padding-left: 0.5em; padding-right: 0.5em;
+            margin-top: 0;
+        }
+        .navsearch {
+            padding-left: 10px; padding-right: 10px; margin-bottom: 10px;
+        }
+        .navsearchbtn:hover {
+            background-color: #a5daff;
+        }
+        h4{
+            font-size: 1em; margin: 0px; padding: 0px;
+            font-style:italic;
+        }
+        </style>
+    </head>
+
+    <body class="push-left" data-spy="scroll" data-target="#navbarsspy" data-offset="5">
+
+
+
+        <div id="preloader">
+            <div id="preloader-inner"></div>
+        </div><!--/preloader-->
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top navbar-left">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsspy" aria-controls="navbarsspy" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" data-scroll href="/"><img src={% static 'images/logo-light.png' %} alt="DCHR Logo"></a>
+
+            <div class="collapse navbar-collapse" id="navbarsspy">
+                <ul class="navbar-nav">
+
+                    <div class="navsearch">
+                    <form class="navbar-form" action="/search">
+                        <div class="input-group add-on">
+                        <input class="form-control" placeholder="Search" name="q" id="q" autocapitalize="off" autocorrect="off" role="textbox" spellcheck="false" type="text" value="" name="q">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default navsearchbtn" style="padding:6px 10px !important" type="submit">
+                                    <svg xmlns="https://www.w3.org/2000/svg" id="sbx-icon-search-13" viewBox="0 0 40 40" width="20px" height="20px">
+                                        <path xmlns="https://www.w3.org/2000/svg" data-name="find  magnify  magnifying  magnifying glass  search" class="cls-1" d="M142.95,357.536l-1.414,1.414a2,2,0,0,1-2.829,0l-6.657-6.657a1.984,1.984,0,0,1-.374-2.266l-1.744-1.744a13.033,13.033,0,1,1,2.351-2.351l1.744,1.744a1.984,1.984,0,0,1,2.266.374l6.657,6.657A2,2,0,0,1,142.95,357.536ZM122,329a9,9,0,1,0,9,9A9,9,0,0,0,122,329Z" transform="translate(-108.266 -324.265)"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                    <li class="nav-item"><a data-scroll class="nav-link active" href="#home">home</a></li>
+                    <li class="nav-item"><a data-scroll class="nav-link" href="#getting-started">Getting Started</a></li>
+                    <li class="nav-item"><a data-scroll class="nav-link" href="#quicknav">Quick Nav</a></li>
+                    <li class="nav-item"><a data-scroll class="nav-link" href="#chapter-index">Chapter Index</a></li>
+                    <li class="nav-item"><a data-scroll class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="clearfix socials-nav text-center hidden-md-down">
+                <span>
+                        <a href="https://www.facebook.com/DCHumanResources/" class="social-icon-sm si-dark si-facebook si-gray-round">
+                            <i class="fa fa-facebook"></i>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a href="https://twitter.com/dchrdc?lang=en" class="social-icon-sm si-dark si-twitter si-gray-round">
+                            <i class="fa fa-twitter"></i>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                </span>
+            </div>
+        </nav>
+        <section id="home" class="dzsparallaxer auto-init dzsparallaxer---window-height use-loading" style="position: relative; height: 800px;" data-options='{  mode_scroll: "normal" }'>
+                <div class="divimage dzsparallaxer--target " data-src={% static 'images/bg2.jpg' %} style="width: 100%; height: 130%; background-image: url()">
+                    <div class="semi-black-overlay"></div>
+                    <div class="content-table">
+                        <div class="content-middle pt80 ">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12 ml-auto mr-auto text-center" style="align-items: center; display:flex; flex-flow: column wrap">
+                                        <h2 class="text-white hero-big-text">
+                                            DC . EDPM
+                                        </h2>
+                                        <p class="lead text-white-gray">
+                                         Electronic District Personnel Manual
+                                        </p>
+
+<div class="ais-search-box">
+    <form action="/search">
+        <input class="form-control ais-search-box--input" id="search-input" placeholder="What are you looking for?" autocapitalize="off" autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="text" value="" name="q">
+
+        <span class="ais-search-box--magnifier-wrapper">
+            <button name="search-submit" id="search-submit-button" type="submit" class="ais-search-box--magnifier" value="true">
+                <svg xmlns="https://www.w3.org/2000/svg" id="sbx-icon-search-13" viewBox="0 0 40 40" width="100%" height="100%">
+                    <path xmlns="https://www.w3.org/2000/svg" data-name="find  magnify  magnifying  magnifying glass  search" class="cls-1" d="M142.95,357.536l-1.414,1.414a2,2,0,0,1-2.829,0l-6.657-6.657a1.984,1.984,0,0,1-.374-2.266l-1.744-1.744a13.033,13.033,0,1,1,2.351-2.351l1.744,1.744a1.984,1.984,0,0,1,2.266.374l6.657,6.657A2,2,0,0,1,142.95,357.536ZM122,329a9,9,0,1,0,9,9A9,9,0,0,0,122,329Z" transform="translate(-108.266 -324.265)"/>
+                </svg>
+            </button>
+        </span>
+    </form>
+    <span class="ais-search-box--reset-wrapper" style="display: block;">
+        <button type="reset" title="Clear the search query." class="ais-search-box--reset search-submit-button">
+            <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 20 20" width="100%" height="100%">
+                <path d="M8.114 10L.944 2.83 0 1.885 1.886 0l.943.943L10 8.113l7.17-7.17.944-.943L20 1.886l-.943.943-7.17 7.17 7.17 7.17.943.944L18.114 20l-.943-.943-7.17-7.17-7.17 7.17-.944.943L0 18.114l.943-.943L8.113 10z" fill-rule="evenodd"></path>
+            </svg>
+        </button>
+    </span>
+</div>
+                                    </div>
+                <!-- SEARCH RESULTS-->
+                <div id="search-results" class="container">
+                    <div class="hits search-header" id=chapsearch-header style="position:relative">Chapters</div>
+                    <div class="hits" id="chapters" style="position:relative"></div>
+                </div>
+                <div id="i-search-results" class="container">
+                    <div class="hits i-search-header" id=chapsearch-header style="position:relative">Issuances</div>
+                    <div class="hits" id="issuances" style="position:relative"></div>
+                </div>
+                <!-- END SEARCH RESULTS-->
+                                </div>
+                            </div>
+                        </div><!--hero inner-->
+                    </div><!--parallax hero-->
+                </div><!--parallax image div-->
+                <div class="mouse-down"><a data-scroll href="#getting-started"><i class="fa fa-angle-down fa-3x text-white"></i></a></div>
+        </section>
+        <!--intro section end-->
+
+        <section id="getting-started" class="pt90 pb50">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 mb40">
+                        <div class="section-title title-left mb40 text-left">
+                            <span class="section-subTitle">Getting Started</span>
+                            <h4 class='mb0 h3 font300 mb20'>Welcome to the Electronic District Personnel Manual (E-DPM).</h4>
+                            <p class="lead">
+                                The E-DPM contains all of the District government's HR resources, rules, and issuances. To get started, you may view the latest effective issuances below, or visit the Chapters Index. The Archives contain superseded rules and issuances.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb40">
+                        <div class="row text-center">
+                            <div class="col-md-6 mb40 icon-fader">
+                                <a href='#quicknav' data-scroll class='nav-link'><img src={% static 'images/mdc-1.png' %} alt='Chapter Index' class='icon-mdc'></a>
+                                <h4 class="text-uppercase pt30 icon-mdc">Chapters QuickNav</h4>
+                            </div>
+                            <div class="col-md-6 mb40 icon-fader">
+                                <a href='#' data-scroll class='nav-link'><img src={% static 'images/mdc-2.png' %} alt='Archives' class='icon-mdc'></a>
+                                <h4 class="text-uppercase pt30 icon-mdc">Archives</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <span class="section-subTitle">Latest Issuances</span>
+                <div class='row'>
+                    {% for i in latest_issuance_list %}
+                    <div class='col-md-4 mb40'>
+                        {% if i.banner_image %}
+                        <a href="{% url 'issuances:issuance_detail' slug=i.slug %}"><img src="{{ i.banner_image.url }}" alt='issuance image' class='img-fluid center-img shadow-card mb30'></a>
+                        {% endif %}
+                        <h5 class='text-uppercase'><a href="{% url 'issuances:issuance_detail' slug=i.slug %}">{{ i.title }}</a></h5>
+                        <h6 style="color:#666">
+                            Effective: {{ i.effective_date }}
+                        </h6>
+                        {% for c in i.issuance_content.all|slice:'0:1' %}
+                        <p>
+                            {{ c.content|striptags|slice:'200'|add:'...' }}
+                        </p>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section><!--section end gettingstarted-->
+
+        <div class='pt50 pb40 bg-primary'>
+            <div class='container'>
+                <div class='row align-items-center'>
+                    <div class='col-md-8'>
+                        <h3 class='text-white '>“ Need assistance? ”</h3>
+                        <p class='lead text-white-gray'>The DC Department of Human Resources is here to help.</p>
+                    </div>
+                    <div class='col-md-4 text-center'>
+                        <a data-scroll href='#contact' class='hover-me1'>Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id='quicknav' class='pt90 pb60'>
+            <div class='container'>
+                <div class='row align-items-center'>
+                    <div class='col-md-4 mb30'>
+                        <div class='section-title title-left mb30'>
+                            <span class="section-subTitle">E-DPM</span>
+                            <h3 class='mb0'>
+                                Chapters
+                            </h3>
+                        </div>
+                        <p class='lead'>
+                            The chapters of the Electronic-District Personnel Manual provide the provisions contained in Title 6B of the DC Municipal Regulations. The E-DPM is updated accordingly as amendments are adopted.
+                        </p>
+                        <a data-scroll href='#chapter-index' class='btn btn-outline-secondary' style='border-width: 2px'>View List</a>
+                    </div>
+                    <div class='col-md-7 offset-md-1'>
+                        <div class='row'>
+                            <table style='margin:auto'>
+                                <tbody>
+                                    <tr>
+                                        <td class="navtd"><a class="navtdcontent" href="#">1</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">2</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">3</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="chapter/4/#contents">4</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">5</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">6</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">7A</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="navtd"><a class="navtdcontent" href="#">7B</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">8</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">9</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">10</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">11A</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">11B</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="chapter/12/#contents">12</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="navtd"><a class="navtdcontent" href="#">13</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">14</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">15</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="chapter/16/#contents">16</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">17</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">18</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">19</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="navtd"><a class="navtdcontent" href="#">20A</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">20B</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">21A</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">22</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">23</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">24</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">25</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="navtd"><a class="navtdcontent" href="#">26</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">27</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">29</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">31A</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">31B</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">32</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">35</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="navtd"><a class="navtdcontent" href="#">36</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">37</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">38</a></td>
+                                        <td class="navtd"><a class="navtdcontent" href="#">36</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!--/.services-->
+        <div class="cta bg-parallax parallax-overlay overlay-primary pt90 angle-top bg-white pb60" data-jarallax-video="https://youtu.be/EjtN_IONPxY" data-jarallax-orignal-styles="null">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 wow fadeInLeft mb30 pt60" data-wow-delay=".1s">
+                        <img src={% static 'images/book.png' %}>
+                    </div>
+                    <div class="col-md-6 pb40 pt60">
+                        <h2 class="text-white font300 mb20">Not sure what Chapter you need?</h2>
+                        <p class="lead text-white-gray">
+                            Check the Chapter Index below for specific Chapter titles. Each chapter contains rules, issuances, and related guidance for all District government employees.
+                        </p>
+<!--                         <h5 class="text-capitalize font500 text-white text-right"> Carlos Doe <small class="text-white-gray">Smaller Text</small></h5> -->
+                    </div>
+                </div>
+            </div>
+        </div><!--/cta-->
+
+        <section id="chapter-index" class="pt90 pb90">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto text-center mb30">
+                        <div class="section-title">
+                            <span class="section-subTitle">E-DPM</span>
+                            <h3 class="mb0">Chapter Index</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm ml-auto mr-auto text-left mn30">
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 1 |  Human Resources Management</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 2 |  Retention of Personnel Rights and Benefits</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 3 |  Residency</a></p>
+                        <p><a href="chapter/4/" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 4 |  Suitability</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 5 |  Public Employee Relations Board</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 6 |  Office of Employe Appeals</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 7A |  Veterans Preferance</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 7B |  Equal Employment Opportunity</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 8 |  Career Service</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 9 |  Excepted Service</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 10 |  Executive Services</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 11A |  Classification</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 11B | Compensation</a></p>
+                        <p><a href="chapter/12/" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 12 |  Hours of WOrk, Legal Holidays, and Leave</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 13 |  Employee Development</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 14 |  Performance Management</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 15 |  Whistleblower Protection</a></p>
+                        <p><a href="chapter/16/" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 16 |  Corrective and Adverse Actions...</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 17 |  Office of Employe Appeals</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 18 |  Veterans Preferance</a></p>
+                    </div>
+                    <div class="col-sm ml-auto mr-auto text-left mn30">
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 19 |  Incentive Awards</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 20A |  Safety</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 20B |  Health</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 21A |  Health Benefits</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 21B |  DC Employees' Health Benefits</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 22 |  Life Insurance Benefi</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 23 |  Disability Compensation</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 25 |  Reductions in Force</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 24 |  Political Rights of Employees</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 26 |  DC Retirement Benefit Program</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 27 |  Temporary Assignment of Personnel</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 29 |  Employee Debt Set-Offs</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 31A |  Records Mangement and Privacy of Records</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 31B |  Processing Personnel Actions</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 32 |  Sub-Delegation of Personnel Authority</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 35 |  Voluntary Services</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 36 |  Legal Service</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 37 |  ...Administrative Law Judges</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 38 |  Management Supervisory Service (MSS)</a></p>
+                        <p><a href="#" class="btn btn-chapter-index" style="white-space:normal; text-align:left">Chapter 39 |  Testing for the Presence of Controlled Substances, Alcohol</a></p>
+                    </div>
+                </div>
+
+            </div>
+        </section><!--/.portfolio-->
+
+        <div class="dzsparallaxer auto-init height-is-based-on-content "  data-options='{   direction: "reverse"}'>
+            <div class="divimage dzsparallaxer--target " style="width: 101%; height: 130%; background-image: url({% static 'images/teamwork.jpg' %})">
+            </div>
+<div class="semi-black-overlay"></div>
+            <div class="container pt100 pb70">
+                <div class="row pb50">
+                    <div class="col-md-8 ml-auto mr-auto wow bounceIn" data-wow-delay=".2s">
+                        <h3 class="h1 text-center font300 text-white">Attracting, developing, and retaining a well-qualified, diverse workforce.</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="dzsprxseparator--2triangles"></div>
+        </div><!--parallax-->
+
+        <section id="contact" class="pt90 pb50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto text-center mb30">
+                        <div class="section-title">
+                            <span class="section-subTitle">Feel Free to Contact Us</span>
+                            <h3 class="mb0">Contact Us</h3>
+                        </div>
+                    </div>
+                </div>
+                    <div class="row">
+                        <div class="ml-auto mr-auto">
+                            <ul class="list-unstyled contact-info">
+                                <li>
+                                    <i class="fa fa-home"></i>
+                                    1015 Half ST SE<br> Washington, D.C. 20003<br><a target="_blank" href="https://goo.gl/maps/May7wG8kmDE2">View On Map</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-phone"></i>
+                                    <p>Office:&nbsp&nbsp(202) 442-9700</p>
+                                    <p>TTY:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp(202) 442-9700</p>
+                                </li>
+                                <li>
+                                    <i class="fa fa-fax"></i>
+                                    <p>Fax: (202) 727-0154</p>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <p>dchr.policy@dc.gov</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="dzsparallaxer auto-init height-is-based-on-content "  data-options='{   direction: "reverse"}'>
+            <div class="divimage dzsparallaxer--target " style="width: 101%; height: 130%; background-image: url({% static 'images/trophy.jpg' %})">
+            </div>
+            <div class="semi-black-overlay"></div>
+            <div class="container pt100 pb70">
+                <div class="row pb50">
+                    <div class="col-md-8 ml-auto mr-auto">
+                        <h3 class="h1 text-center font300 text-white">Communication, Collaboration, Cooperation, Coordination</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="dzsprxseparator--2triangles"></div>
+        </div><!--parallax-->
+
+        <footer class='footer'>
+            <div class='container'>
+                <div class='row'>
+                   <div class="col-md-6">
+                       <ul class="list-inline text-sm-center footer-nav">
+                           <li class="list-inline-item">
+                               <a href="https://dchr.dc.gov/">Return to dchr.dc.gov</a>
+                           </li>
+                       </ul>
+                   </div>
+                    <div class='col-md-6 text-center'>
+                        <span>District of Columbia Department of Human Resources</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--back to top-->
+        <a href="#" class="back-to-top hidden-xs-down" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+        <!-- jQuery first, then Tether, then Bootstrap JS. -->
+        <script type="text/javascript" src={% static 'js/popper.min.js' %}></script>
+        <script type="text/javascript" src={% static 'js/plugins/plugins.js' %}></script>
+        <script type="text/javascript" src={% static 'js/onepage-leftNav.js' %}></script>
+        <!--dz parallaxer-->
+        <script type="text/javascript" src={% static 'dzsparallaxer/dzsparallaxer.js' %}></script>
+        <script type="text/javascript" src={% static 'dzsparallaxer/scroller.js' %}></script>
+        <script type="text/javascript" src={% static 'dzsparallaxer/advancedscroller/plugin.js' %}></script>
+        <!-- load cubeportfolio -->
+        <script type="text/javascript" src={% static 'cubeportfolio/js/jquery.cubeportfolio.min.js' %}></script>
+        <script type="text/javascript" src={% static 'js/folio-load-more.js' %}></script>
+        <script type="text/javascript" src={% static 'js/testimonials.js' %}></script>
+
+        <!--Search Hits Template -->
+        {% verbatim %}
+        <script type="text/html" id="hit-template">
+            <div class="hit">
+                <div class="hit-content">
+                    <h3 class="hit-title"><a href=/chapter/{{chapter}}#section-{{num}}>{{num}} {{{_highlightResult.title.value}}}</a></h3>
+                    <p class="hit-description">{{{_snippetResult.content.value}}}</p>
+                </div>
+            </div>
+        </script>
+        <script type="text/html" id="hit-template-i">
+            <div class="hit">
+                <div class="hit-content">
+                    <h3 class="hit-title"><a href=/issuances/{{slug}}>{{{_highlightResult.title.value}}}</a></h3>
+                    <p class="hit-description">{{{_snippetResult.contents.value}}}</p>
+                </div>
+            </div>
+        </script>
+        {% endverbatim %}
+
+    </body>
+
+<script type="text/javascript" src={% static 'js/instantsearch.min.js' %}></script>
+<script type="text/javascript" src={% static 'js/app.js' %}></script>
+
+
+</html>

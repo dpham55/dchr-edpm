@@ -1,0 +1,357 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template-overviews/simple-sidebar)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+
+body {
+  overflow-x: hidden;
+}
+
+h1{
+  padding-top: 8px;
+}
+
+h2{
+  padding-top: 8px;
+  font-size: 1.5em;
+}
+
+h3{
+  font-size: 1.1em;
+  padding-top: 8px;
+}
+
+li{
+  margin: 6px;
+}
+
+#wrapper {
+  padding-left: 0px;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+  padding-left: 250px;
+}
+
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  left: 250px;
+  width: 0;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  background: #000;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  width: 250px;
+}
+
+#page-content-wrapper {
+  width: 100%;
+  position: absolute;
+  padding: 0px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -250px;
+}
+
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display:block;
+  top:60px;
+}
+
+.sidebar-nav li {
+  text-indent: 20px;
+  line-height: 40px;
+}
+
+.sidebar-nav li a {
+  display: block;
+  text-decoration: none;
+  color: #999999;
+}
+
+.sidebar-nav li a:hover {
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+  text-decoration: none;  
+}
+
+.sidebar-nav>.sidebar-brand {
+  height: 65px;
+  font-size: 18px;
+  line-height: 60px;
+}
+
+.sidebar-nav>.sidebar-brand a {
+  color: #999999;
+}
+
+.sidebar-nav>.sidebar-brand a:hover {
+  color: #fff;
+  background: none;
+}
+
+@media(min-width:768px) {
+  #wrapper {
+    padding-left: 0;
+  }
+  #wrapper.toggled {
+    padding-left: 250px;
+  }
+  #sidebar-wrapper {
+    width: 0;
+  }
+  #wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+  }
+  #page-content-wrapper {
+    padding: 0px;
+    position: relative;
+  }
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+  }
+}
+
+
+
+
+/* adds some margin below the link sets  */
+/*.navbar .dropdown-menu div[class*="col"] {
+   margin-bottom:1rem;
+}*/
+
+.navbar .dropdown-menu {
+  border:none;
+  background-color: #062b3a;
+}
+
+/* breakpoint and up - mega dropdown styles */
+@media screen and (min-width: 992px) {
+  
+  /* remove the padding from the navbar so the dropdown hover state is not broken */
+.navbar {
+  padding-top:0px;
+  padding-bottom:0px;
+}
+
+/* remove the padding from the nav-item and add some margin to give some breathing room on hovers */
+.navbar .nav-item {
+  padding:.5rem .5rem;
+  margin:0 .25rem;
+}
+
+/* nav dropdown width  */
+.navbar .dropdown {
+  position: relative;
+  width: 415px;
+}
+
+.navbar .dropdown-menu {
+  width: 20em;
+  left:0;
+  right:0;
+/*  height of nav-item  */
+  top:53px;
+}
+  
+  /* shows the dropdown menu on hover */
+/*.navbar .dropdown:hover .dropdown-menu, .navbar .dropdown .dropdown-menu:hover {
+  display:block!important;
+}*/
+  
+  .navbar .dropdown-menu {
+    border: 0px solid rgba(0,0,0,.15);
+    background-color: #062B3A;
+  }
+
+.hovereffect {
+  width: 100%;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
+  background: #42b078;
+}
+
+.hovereffect .overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  padding: 50px 20px;
+}
+
+.hovereffect img {
+  display: block;
+  position: relative;
+  max-width: none;
+  width: calc(100% + 20px);
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(-10px,0,0);
+  transform: translate3d(-10px,0,0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.hovereffect:hover img {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+.hovereffect h2 {
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  font-size: 17px;
+  overflow: hidden;
+  padding: 0.5em 0;
+  background-color: transparent;
+}
+
+.hovereffect h2:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  content: '';
+  -webkit-transition: -webkit-transform 0.35s;
+  transition: transform 0.35s;
+  -webkit-transform: translate3d(-100%,0,0);
+  transform: translate3d(-100%,0,0);
+}
+
+.hovereffect:hover h2:after {
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+.hovereffect a, .hovereffect p {
+  color: #FFF;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(100%,0,0);
+  transform: translate3d(100%,0,0);
+}
+
+.hovereffect:hover a, .hovereffect:hover p {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+}
+.navtable{
+   border-collapse: separate;
+   border-spacing: 8px;
+}
+
+.navtd{
+  border-style: none;
+  width:50px;
+  height:50px;
+  text-align:center;
+  vertical-align:middle;
+}
+
+.navtd a{
+    display:block;
+    width:100%;
+    line-height:50px;
+    vertical-align:middle;
+    background-color: #6f6f6f;
+    color: white;
+}
+
+.navtd a:hover{
+  background-color: black;
+  text-decoration: none;
+}
+
+.overviewTable {
+  width: 100%;
+}
+
+.overviewTable thead{
+  font-weight:bold;
+}
+
+/*.overviewTable td{
+  border-style: none;
+  width:50px;
+  height:50px;
+  text-align:center;
+  vertical-align:middle;
+}*/
+
+.chapterList{
+  list-style-type: none;
+}
+
+.chapterList li{
+  padding-bottom: 10px;
+}
+
+.jumbotron{
+  height:350px;
+  background: linear-gradient( rgba(19, 45, 68, 0.7), rgba(19, 45, 68, 0.7) ), url("https://images.pexels.com/photos/208702/pexels-photo-208702.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-attachment: fixed;
+  background-position: 0px -245px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, .5);
+  color: white;
+}
+
+.jumbocontent{
+  padding-top:60px;
+}
+
+.anchor{
+    display: block;
+    position: relative;
+    top: -60px;
+    visibility: hidden;
+}
+
+.bg-primary{}
