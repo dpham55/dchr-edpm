@@ -1,5 +1,5 @@
 # dchr-edpm
-This is a repository for DCHR's Electronic District Personnel Manual. A demo can be found on https://danpham1.pythonanywhere.com
+This is a repository for DCHR's Electronic District Personnel Manual. A demo can be found on https://danpham1.pythonanywhere.com. Note that the demo site may not necessarily be up to date with the files in this repository.
 
 The DCHR E-DPM runs on the Django framework using Python 3.6. The Search functionality is provided by Algolia. 
 This application uses the following libraries which can installed via pip:
