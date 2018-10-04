@@ -18,58 +18,7 @@
     <!-- load css for cubeportfolio -->
     <link rel="stylesheet" type="text/css" href={% static 'cubeportfolio/css/cubeportfolio.min.css' %}>     
     <link href={% static 'css/style-leftNavbar.css' %} rel="stylesheet">
-
-    <style type="text/css">
-        .jumbotron {
-            background: linear-gradient( rgba(19, 45, 68, 0.7), rgba(19, 45, 68, 0.7) ), url({{ issuance.banner_image.url }});
-            background-size:cover; background-position:center;
-            background-color: rgba(0, 0, 0, .5);
-            color: white;
-        }
-        .issuance-detail h1{
-          padding-top: 8px;
-        }
-
-        .issuance-detail h2{
-          padding-top: 8px;
-          font-size: 1.5em;
-        }
-
-        .issuance-detail h3{
-          font-size: 1.1em;
-          padding-top: 8px;
-        }
-
-        .issuance-detail li{
-          margin: 6px;
-        }
-        .overviewTable {
-          width: 100%;
-        }
-        .overviewTable thead{
-          font-weight:bold;
-        }
-        .issuance-detail {
-            color: #353535;
-        }
-        .navsearch {
-            padding-left: 10px; padding-right: 10px; margin-bottom: 10px;
-        }
-        .navsearchbtn:hover {
-            background-color: #a5daff;
-        }
-        th{
-            background-color:#bf0000;
-            color: white;
-        }
-        table{
-            border-style:none;
-        }
-        td p{
-            margin-bottom: 0px;
-            margin-left: 5px; margin-right: 5px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href={% static 'css/template-issuance.css' %}>
 </head>
 <body class="push-left" data-spy="scroll" data-target="#navbarsspy" data-offset="5">
     <div id="preloader">
