@@ -15,7 +15,7 @@ class HomeView(generic.ListView):
 	model = Issuance
 
 	def get_queryset(self):
-		return Issuance.objects.filter(publish__lte=timezone.now()).exclude(publish__exact=None).order_by('effective_date')[0:3]
+		return Issuance.objects.filter(publish__lte=timezone.now()).exclude(publish__exact=None).order_by('-effective_date')[0:3]
 
 class IssuanceView(generic.DetailView):
 	template_name = 'issuances/issuance.html'
