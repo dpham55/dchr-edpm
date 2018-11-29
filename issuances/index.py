@@ -16,9 +16,9 @@ class ChapterSectionIndex(AlgoliaIndex):
 
 @register(Issuance)
 class IssuanceIndex(AlgoliaIndex):
-	fields = ('title', 'chapter_searchable','contents','slug')
+	fields = ('title', 'chapter_searchable','contents','slug', 'attachments')
 	settings= {
-				'searchableAttributes': ['title','contents'],
+				'searchableAttributes': ['title','contents','attachments'],
 				'attributesForFaceting': ['chapter',]
 	}
 	index_name = 'Issuances'

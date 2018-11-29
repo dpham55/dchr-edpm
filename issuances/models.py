@@ -23,6 +23,7 @@ class Chapter(models.Model):
 	def section_list(self):
 		return self.chaptersection_set.order_by(pk)
 
+
 class ChapterSection(models.Model):
 	def number():
 		num = ChapterSection.objects.count()
@@ -35,6 +36,7 @@ class ChapterSection(models.Model):
 	num = models.IntegerField('Section Number', unique=True, default=number)
 	chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
 	content = RichTextField()
+
 
 class Issuance(models.Model):
 	title = models.CharField(max_length=200)
@@ -86,6 +88,9 @@ class Issuance(models.Model):
 		else:
 			return self.legacy_id
 
+	def attachments(self):
+		return self.attachment.all()
+
 	i_id.short_description = 'Issuance ID'
 	i_id.admin_order_field = 'issuance_number'
 
@@ -104,6 +109,42 @@ class Attachment(models.Model):
 	title = models.CharField(max_length=200)
 	url = models.URLField(blank = True, null = True)
 	issuance = models.ForeignKey(Issuance, on_delete=models.CASCADE)
+	PFL = 'Paid Family Leave Program'
+	COMPENSATION = 'Compensation'
+	EMPLOYMENT = 'Employment'
+	HRATOOLS = 'HR Advisor Tools'
+	EMPLOYEERELATIONS = 'Employee Relations'
+	LEAVE = 'Leave'
+	ATTACHFORM = 'Form'
+	ATTACHTEMPLATE = 'Template'
+	ATTACHMISC = 'Misc'
+	attachmentCategories = (
+		(PFL,'Paid Family Leave Program'),
+		(COMPENSATION,'Compensation'),
+		(EMPLOYMENT,'Employment'),
+		(HRATOOLS,'HR Advisor Tools'),
+		(EMPLOYEERELATIONS,'Employee Relations'),
+		(LEAVE,'Leave'),
+	)
+	attachmentTypes = (
+		(ATTACHFORM, 'Form'),
+		(ATTACHTEMPLATE, 'Template'),
+		(ATTACHMISC, 'Misc'),
+	)
+	attachCategory = models.CharField(
+		max_length = 50,
+		choices = attachmentCategories,
+		blank = True,
+		null = True,
+		default = None,
+	)
+	attachType = models.CharField(
+		max_length = 50,
+		choices = attachmentTypes,
+		blank = True,
+		null = True,
+		default = None,
+	)
 
 	def __str__(self):
 		return self.title
