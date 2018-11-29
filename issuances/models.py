@@ -88,6 +88,9 @@ class Issuance(models.Model):
 		else:
 			return self.legacy_id
 
+	def attachments(self):
+		return self.attachment.all()
+
 	i_id.short_description = 'Issuance ID'
 	i_id.admin_order_field = 'issuance_number'
 
