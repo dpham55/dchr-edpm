@@ -1,5 +1,5 @@
 algoliasearch==1.17.0 
-algoliasearch-django==1.60 
+algoliasearch-django==1.6.0 
 Django==2.1.2
 django-autoslug==1.9.3 
 django-ckeditor==5.6.1 
