@@ -41,6 +41,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -166,3 +167,6 @@ ALGOLIA = {
     'APPLICATION_ID': AID,
     'API_KEY': AKEY
 }
+
+# Grappelli Settings
+GRAPPELLI_ADMIN_TITLE = "DCHR E-DPM"

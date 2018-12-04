@@ -23,18 +23,19 @@ class Chapter(models.Model):
 	def section_list(self):
 		return self.chaptersection_set.order_by(pk)
 
-class ChapterSection(models.Model):
-	def number():
-		num = ChapterSection.objects.count()
-		if num == None:
-			return 1
-		else:
-			return num + 1
+	def nonblank_titles(self):
+		return self.chaptersection_set.exclude(title__isnull=True).exclude(title__exact='')
 
-	title = models.CharField(max_length=200)
-	num = models.IntegerField('Section Number', unique=True, default=number)
+
+class ChapterSection(models.Model):
+	title = models.CharField(max_length=200,blank=True)
+	num = models.CharField('Section Number', unique=True, max_length=10)
 	chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
 	content = RichTextField()
+	position = models.PositiveSmallIntegerField('position',null=True)
+	class Meta:
+		ordering = ['position']
+
 
 class Issuance(models.Model):
 	title = models.CharField(max_length=200)

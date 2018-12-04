@@ -3,6 +3,7 @@ from django import forms
 from django.contrib import admin
 from ckeditor.widgets import CKEditorWidget
 from django.contrib.admin import SimpleListFilter
+from grappelli.forms import GrappelliSortableHiddenMixin
 
 from .models import Issuance, IssuanceContent, Chapter, Attachment, ChapterSection
 
@@ -30,11 +31,15 @@ class ChapterInline(admin.TabularInline):
 	verbose_name = 'Related issuances/chapter'
 	verbose_name_plural = 'Related issuance/chapters'
 
-class ChapterSectionInline(admin.StackedInline):
+class ChapterSectionInline(GrappelliSortableHiddenMixin, admin.StackedInline):
 	model = ChapterSection
 	extra = 0
 	verbose_name = 'Section'
 	verbose_name_plural = 'Sections'
+	fields = ('title','num','content','position')
+	classes = ('grp-collapse grp-open',)
+	inline_classes = ('grp collapse grp-open',)
+
 
 class IssuanceContentInline(admin.StackedInline):
 	model = IssuanceContent

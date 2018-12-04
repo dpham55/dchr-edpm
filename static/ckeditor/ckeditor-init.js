@@ -48,7 +48,7 @@
   }
 
   function initialiseCKEditorInInlinedForms() {
-    document.body.addEventListener('click', function(e) {
+    document.body.addEventListener('click', function(event, $form, prefix) {
       if (e.target && (
         e.target.matches('.add-row a') ||
         e.target.matches('.grp-add-handler')
