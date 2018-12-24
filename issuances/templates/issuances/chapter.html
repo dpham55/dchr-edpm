@@ -193,7 +193,7 @@
                         <!-- TOC -->
                         <table class="table">
                             <tbody>
-                            {% for section in chapter.chaptersection_set.all %}
+                            {% for section in chapter.nonblank_titles %}
                                 <tr>
                                     <td>{{ section.num }}</td>
                                     <td><a data-scroll href="#section-{{ section.num }}">{{ section.title }}</a></td>
@@ -213,10 +213,9 @@
                 <h1>{{ chapter.title }}</h1>
                 {% for section in chapter.chaptersection_set.all %}
                     <a class="toc-anchor" id="section-{{ section.num }}"></a>
-                    <hr>
                     <h3 class="chap-section-header">{{ section.num }}     {{ section.title }}</h3>
-                    <hr>
                     <p>{{ section.content|safe }}</p>
+                    <hr>               
                 {% endfor %}
             </div>
 

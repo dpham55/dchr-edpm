@@ -1,4 +1,4 @@
-import datetime
+import datetime, re
 from django.db import models
 from django.utils import timezone
 from ckeditor.fields import RichTextField
@@ -23,19 +23,15 @@ class Chapter(models.Model):
 	def section_list(self):
 		return self.chaptersection_set.order_by(pk)
 
+	def nonblank_titles(self):
+		return self.chaptersection_set.exclude(title__isnull=True).exclude(title__exact='')
+
 
 class ChapterSection(models.Model):
-	def number():
-		num = ChapterSection.objects.count()
-		if num == None:
-			return 1
-		else:
-			return num + 1
-
-	title = models.CharField(max_length=200)
-	num = models.IntegerField('Section Number', unique=True, default=number)
+	title = models.CharField(max_length=200, blank=True)
+	num = models.CharField('Section Number', unique=True, max_length=9)
 	chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
-	content = RichTextField()
+	content = RichTextField(blank=True, null=True)
 
 
 class Issuance(models.Model):

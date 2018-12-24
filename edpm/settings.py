@@ -139,8 +139,8 @@ STATIC_URL = '/static/'
 CKEDITOR_CONFIGS = {
     'default': {
         'skin': 'moono-lisa',
-        'width': 800,
-        'height': 400,
+        'width': 1000,
+        'height': 150,
         'toolbar': 'EDPM',
         'toolbar_EDPM': [
             ['Format', 'Bold', 'Italic', 'Underline'],

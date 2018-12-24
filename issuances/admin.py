@@ -1,4 +1,4 @@
-import datetime
+import datetime, re
 from django import forms
 from django.contrib import admin
 from ckeditor.widgets import CKEditorWidget
@@ -68,6 +68,7 @@ class ChapterAdmin(admin.ModelAdmin):
 	]
 	inlines = [ChapterSectionInline]
 	list_display = ('shorthand','title')
+
 
 class ChapterSectionAdmin(admin.ModelAdmin):
 	form = ChapterSectionAdminForm
