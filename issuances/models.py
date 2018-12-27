@@ -2,6 +2,8 @@ import datetime, re
 from django.db import models
 from django.utils import timezone
 from ckeditor.fields import RichTextField
+from adminsortable.models import SortableMixin
+from adminsortable.fields import SortableForeignKey
 
 # Create your models here.
 
@@ -12,7 +14,7 @@ class Chapter(models.Model):
 	chapter_no = models.IntegerField(unique=True, null=True)
 
 	def __str__(self):
-		return self.title
+		return str(self.chapter_no)
 
 	@property
 	def recent_issuance_list(self):
@@ -28,12 +30,19 @@ class Chapter(models.Model):
 		return self.chaptersection_set.exclude(title__isnull=True).exclude(title__exact='')
 
 
-class ChapterSection(models.Model):
+class ChapterSection(SortableMixin):
+	class Meta:
+		ordering = ['section_order']
+
 	title = models.CharField(max_length=200, blank=True)
 	num = models.CharField('Section Number', unique=True, max_length=9)
-	chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
+	chapter = SortableForeignKey(Chapter, on_delete=models.CASCADE)
 	content = RichTextField(blank=True, null=True)
 
+	section_order = models.PositiveIntegerField(default = 0, editable=False, db_index=True)
+
+	def __str__(self):
+		return self.num
 
 class Issuance(models.Model):
 	title = models.CharField(max_length=200)
@@ -80,13 +89,17 @@ class Issuance(models.Model):
 		return self.title
 
 	def i_id(self):
+		if self.publish is None:
+			pubyear = '9999'
+		else:
+			pubyear = str(self.publish.year)
 		if self.legacy_id is None:
-			return "I-" + str(self.publish.year) + "-" + str(self.issuance_number)
+			return "I-" + pubyear + "-" + str(self.issuance_number)
 		else:
 			return self.legacy_id
 
 	def attachments(self):
-		return self.attachment.all()
+		return self.attachment_set.all()
 
 	i_id.short_description = 'Issuance ID'
 	i_id.admin_order_field = 'issuance_number'
@@ -147,11 +160,15 @@ class Attachment(models.Model):
 		return self.title
 
 
-class IssuanceContent(models.Model):
+class IssuanceContent(SortableMixin):
+	class Meta:
+		ordering = ['content_order']
+
 	header = models.CharField(max_length=150)
 	content = RichTextField()
-	issuance = models.ForeignKey(Issuance, related_name='issuance_content', on_delete=models.CASCADE)
+	issuance = SortableForeignKey(Issuance, related_name='issuance_content', on_delete=models.CASCADE)
 
+	content_order = models.PositiveIntegerField(default = 0, editable=False, db_index=True)
 	def __str__(self):
 		return self.header
 
