@@ -24,8 +24,8 @@ class IssuanceView(generic.DetailView):
 class ChapterView(generic.DetailView):
 	template_name = 'issuances/chapter.html'
 	model = Chapter
-	slug_field = 'shorthand'
-	slug_url_kwarg = 'shorthand'
+	slug_field = 'slug'
+	slug_url_kwarg = 'slug'
 
 class SearchView(generic.ListView):
 	template_name = 'issuances/search.html'
