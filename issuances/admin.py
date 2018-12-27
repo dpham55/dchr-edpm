@@ -64,10 +64,11 @@ class ActiveFilter(SimpleListFilter):
 
 class ChapterAdmin(admin.ModelAdmin):
 	fieldsets = [
-		(None,						{'fields':['title','shorthand','description',]})
+		(None,						{'fields':['title','slug','chapter_no','description',]})
 	]
 	inlines = [ChapterSectionInline]
-	list_display = ('shorthand','title')
+	list_display = ('chapter_no','title')
+	prepopulated_fields = {'slug': ('title',)}
 
 
 class ChapterSectionAdmin(admin.ModelAdmin):

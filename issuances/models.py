@@ -8,10 +8,11 @@ from ckeditor.fields import RichTextField
 class Chapter(models.Model):
 	title = models.CharField(max_length=200)
 	description = models.TextField(max_length=800, blank=True, null=True)
-	shorthand = models.SlugField(max_length=3, unique=True, null=True)
+	slug = models.SlugField(max_length=200, unique=True, null=True, verbose_name='Slug (do not edit)')
+	chapter_no = models.IntegerField(unique=True, null=True)
 
 	def __str__(self):
-		return self.shorthand
+		return self.title
 
 	@property
 	def recent_issuance_list(self):
@@ -102,7 +103,7 @@ class Issuance(models.Model):
 
 
 class Attachment(models.Model):
-	title = models.CharField(max_length=200)
+	title = models.CharField(blank = True, null = True, max_length=200)
 	url = models.URLField(blank = True, null = True)
 	issuance = models.ForeignKey(Issuance, on_delete=models.CASCADE)
 	PFL = 'Paid Family Leave Program'
