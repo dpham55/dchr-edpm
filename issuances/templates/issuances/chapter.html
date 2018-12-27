@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>DCHR | E-DPM | Electronic District Personnel Manual | {{ chapter.title }}</title>
+        <!-- Plugins CSS -->
+        <link href={% static 'css/plugins/plugins.css' %} rel="stylesheet">
+        <!--dz parallaxer-->
+        <link href={% static 'dzsparallaxer/dzsparallaxer.css' %} rel="stylesheet">
+        <link href={% static 'dzsparallaxer/scroller.css' %} rel="stylesheet">
+        <link href={% static 'dzsparallaxer/advancedscroller/plugin.css' %} rel="stylesheet">
+        <!--smart form css-->
+        <link href={% static 'smart-form/contact-recaptcha/css/smart-forms.css' %} rel="stylesheet">
+        <!-- load css for cubeportfolio -->
+        <link rel="stylesheet" type="text/css" href={% static 'cubeportfolio/css/cubeportfolio.min.css' %}>
+        <link href={% static 'css/style-leftNavbar.css' %} rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href={% static 'css/template-chapter.css' %}>
+    </head>
+
+    <body class="push-left" data-spy="scroll" data-target="#navbarsspy" data-offset="5">
+
+        <div id="preloader">
+            <div id="preloader-inner"></div>
+        </div><!--/preloader-->
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top navbar-left">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsspy" aria-controls="navbarsspy" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" data-scroll href="/"><img src={% static 'images/logo-light.png' %} alt="DCHR Logo"></a>
+
+            <div class="collapse navbar-collapse" id="navbarsspy">
+                <ul class="navbar-nav">
+                    <div class="navsearch">
+                    <form class="navbar-form" action="/search">
+                        <div class="input-group add-on">
+                        <input class="form-control" placeholder="Search" name="q" id="q" autocapitalize="off" autocorrect="off" role="textbox" spellcheck="false" type="text" value="" name="q">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" style="padding:6px 10px !important" type="submit">
+                                    <svg xmlns="https://www.w3.org/2000/svg" id="sbx-icon-search-13" viewBox="0 0 40 40" width="20px" height="20px">
+                                        <path xmlns="https://www.w3.org/2000/svg" data-name="find  magnify  magnifying  magnifying glass  search" class="cls-1" d="M142.95,357.536l-1.414,1.414a2,2,0,0,1-2.829,0l-6.657-6.657a1.984,1.984,0,0,1-.374-2.266l-1.744-1.744a13.033,13.033,0,1,1,2.351-2.351l1.744,1.744a1.984,1.984,0,0,1,2.266.374l6.657,6.657A2,2,0,0,1,142.95,357.536ZM122,329a9,9,0,1,0,9,9A9,9,0,0,0,122,329Z" transform="translate(-108.266 -324.265)"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                    <li class="nav-item"><a data-scroll class="nav-link active" href="#home">Chapter {{ chapter.chapter_no }}</a></li>
+                    <li class="nav-item"><a data-scroll class="nav-link" href="#overview">Overview</a></li>
+                    <li class="nav-item"><a data-scroll class="nav-link" href="#active-issuances">Active Issuances</a></li>
+                    <li class="nav-item"><a data-scroll class="nav-link" href="#contents">Contents</a></li>
+                </ul>
+            </div>
+        </nav>
+        <section id="home" class="dzsparallaxer auto-init dzsparallaxer---window-height use-loading" style="position: relative; height: 800px;" data-options='{  mode_scroll: "normal" }'>
+            <div class="divimage dzsparallaxer--target " data-src={% static 'images/bg2.jpg' %} style="width: 100%; height: 130%; background-image: url()">
+                <div class="semi-black-overlay"></div>
+                <div class="content-table">
+                    <div class="content-middle pt80 ">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12 ml-auto mr-auto text-center">
+                                    <h2 class="text-white hero-big-text">
+                                        Chapter {{ chapter.chapter_no }}
+                                    </h2>
+                                    <p class="lead text-white-gray">
+                                     {{ chapter.title }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--hero inner-->
+
+                </div><!--parallax hero-->
+            </div><!--parallax image div-->
+            <div class="mouse-down"><a data-scroll href="#overview"><i class="fa fa-angle-down fa-3x text-white"></i></a></div>
+        </section>
+        <!--intro section end-->
+
+
+        <section id="overview" class="pt90 pb50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto text-center mb30">
+                        <div class="section-title">
+                            <span class="section-subTitle">Chapter {{ chapter.chapter_no }}</span>
+                            <h3 class="mb0">Overview</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center ml-auto mr-auto">
+                    <h4 class='mb0 h3 font300 mb20'>{{ chapter.title }}</h4>
+                </div>
+                <div class="row align-items-center ml-auto mr-auto"></div>
+                    <p class="lead">
+                        {{ chapter.description }}
+                    </p>
+                </div>
+            </div>
+        </section><!--section end gettingstarted-->
+
+        <div class="cta bg-parallax parallax-overlay overlay-primary pt90 angle-top bg-white pb60" data-jarallax-video="https://youtu.be/EjtN_IONPxY" data-jarallax-orignal-styles="null">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 wow fadeInLeft mb30 pt60" data-wow-delay=".1s">
+                        <img src="">
+                    </div>
+                    <div class="col-md-6 pb40 pt60">
+                        <h2 class="text-white font300 mb20"></h2>
+                        <p class="lead text-white-gray">
+                        </p>
+<!--                         <h5 class="text-capitalize font500 text-white text-right"> Carlos Doe <small class="text-white-gray">Smaller Text</small></h5> -->
+                    </div>
+                </div>
+            </div>
+        </div><!--/cta-->
+
+        <section id='active-issuances' class='pt90 pb60'>
+            <div class='container'>
+                <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto text-center mb30">
+                        <div class="section-title">
+                            <span class="section-subTitle">Chapter {{ chapter.chapter_no }}</span>
+                            <h3 class="mb0">Active Issuances</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class='row'>
+                {% for i in chapter.active_issuance_list %}
+                    <div class='col-md-4 mb40'>
+                        <a href="{% url 'issuances:issuance_detail' slug=i.slug %}"><img src="{{ i.banner_image.url }}" alt='issuance image' class='img-fluid center-img shadow-card mb30'></a>
+                        <h5 class='text-uppercase'>
+                            <a href="{% url 'issuances:issuance_detail' slug=i.slug %}">{{ i.title }}</a>
+                        </h5>
+                        <h6 style="color:#666">
+                            Effective: {{ i.effective_date }}
+                        </h6>
+                        {% for c in i.issuance_content.all|slice:'0:1' %}
+                        <p>
+                            {{ c.content|striptags|slice:'200'|add:'...' }}
+                        </p>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+
+
+        </section><!--/.services-->
+        <div class='pt50 pb40 bg-primary'>
+            <div class='container'>
+                <div class='row align-items-center'>
+                    <div class='col-md-8'>
+                        <h3 class='text-white '>“ Need assistance? ”</h3>
+                        <p class='lead text-white-gray'>The DC Department of Human Resources is here to help.</p>
+                    </div>
+                    <div class='col-md-4 text-center'>
+                        <a data-scroll href='#contact' class='hover-me1'>Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="contents" class="pt90 pb90">
+            <div class="container">
+                <div class="container">
+                    <div class="col-md-6 ml-auto mr-auto text-center mb30">
+                        <div class="section-title">
+                            <span class="section-subTitle">Chapter {{ chapter.chapter_no }}</span>
+                            <h3 class="mb0">Provisions</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACCORDION -->
+            <div class="container">
+                <div id="accordion">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h5 class="mb-0">
+                        <button class="btn btn-link" style="margin: .5rem" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Contents
+                        </button>
+                      </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                      <div class="card-body">
+                        <!-- TOC -->
+                        <table class="table">
+                            <tbody>
+                            {% for section in chapter.nonblank_titles %}
+                                <tr>
+                                    <td>{{ section.num }}</td>
+                                    <td><a data-scroll href="#section-{{ section.num }}">{{ section.title }}</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <!-- TOC -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <!-- END ACCORDION-->
+
+            <div class="container.fluid chap-list pb50 pt50 context">
+                <h1>{{ chapter.title }}</h1>
+                {% for section in chapter.chaptersection_set.all %}
+                    <a class="toc-anchor" id="section-{{ section.num }}"></a>
+                    <h3 class="chap-section-header">{{ section.num }}     {{ section.title }}</h3>
+                    <p>{{ section.content|safe }}</p>
+                    <hr>               
+                {% endfor %}
+            </div>
+
+        </section><!--/.portfolio-->
+
+
+        <footer class='footer'>
+            <div class='container'>
+                <div class='row'>
+                   <div class="col-md-6">
+                       <ul class="list-inline text-sm-center footer-nav">
+                           <li class="list-inline-item">
+                               <a href="https://dchr.dc.gov/">Return to dchr.dc.gov</a>
+                           </li>
+                       </ul>
+                   </div>
+                    <div class='col-md-6 text-center'>
+                        <span>District of Columbia Department of Human Resources</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--back to top-->
+        <a href="#" class="back-to-top hidden-xs-down" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+        <!-- jQuery first, then Tether, then Bootstrap JS. -->
+        <script type="text/javascript" src={% static 'js/plugins/plugins.js' %}></script>
+        <script type="text/javascript" src={% static 'js/onepage-leftNav.js' %}></script>
+        <!--dz parallaxer-->
+        <script type="text/javascript" src={% static 'dzsparallaxer/dzsparallaxer.js' %}></script>
+        <script type="text/javascript" src={% static 'dzsparallaxer/scroller.js' %}></script>
+        <script type="text/javascript" src={% static 'dzsparallaxer/advancedscroller/plugin.js' %}></script>
+        <!-- load cubeportfolio -->
+        <script type="text/javascript" src={% static 'cubeportfolio/js/jquery.cubeportfolio.min.js' %}></script>
+        <script type="text/javascript" src={% static 'js/folio-load-more.js' %}></script>
+        <script type="text/javascript" src={% static 'js/testimonials.js' %}></script>
+    </body>
+</html>
