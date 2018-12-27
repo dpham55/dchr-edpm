@@ -3,6 +3,7 @@ from django import forms
 from django.contrib import admin
 from ckeditor.widgets import CKEditorWidget
 from django.contrib.admin import SimpleListFilter
+from adminsortable.admin import NonSortableParentAdmin, SortableStackedInline
 
 from .models import Issuance, IssuanceContent, Chapter, Attachment, ChapterSection
 
@@ -30,13 +31,13 @@ class ChapterInline(admin.TabularInline):
 	verbose_name = 'Related issuances/chapter'
 	verbose_name_plural = 'Related issuance/chapters'
 
-class ChapterSectionInline(admin.StackedInline):
+class ChapterSectionInline(SortableStackedInline):
 	model = ChapterSection
 	extra = 0
 	verbose_name = 'Section'
 	verbose_name_plural = 'Sections'
 
-class IssuanceContentInline(admin.StackedInline):
+class IssuanceContentInline(SortableStackedInline):
 	model = IssuanceContent
 	extra = 0
 	verbose_name = 'Issuance Section'
@@ -62,7 +63,7 @@ class ActiveFilter(SimpleListFilter):
 		if self.value() == 'No':
 			return queryset.exclude(expiration_date__gte=datetime.datetime.now().date()).exclude(expiration_date__isnull=True)
 
-class ChapterAdmin(admin.ModelAdmin):
+class ChapterAdmin(NonSortableParentAdmin):
 	fieldsets = [
 		(None,						{'fields':['title','slug','chapter_no','description',]})
 	]
@@ -77,7 +78,7 @@ class ChapterSectionAdmin(admin.ModelAdmin):
 		(None,						{'fields':['title','num','content',]})
 	]
 
-class IssuanceAdmin(admin.ModelAdmin):
+class IssuanceAdmin(NonSortableParentAdmin):
 	# form var Req by CKEditor
 	#form = IssuanceAdminForm
 
