@@ -112,7 +112,7 @@
                     {% endif %}
                         <td>
                             {% for chapter in issuance.chapter.all %}
-                                <a href=chapter/{{chapter.shorthand}}/#contents">{{ chapter.shorthand|add:',' }}</a>
+                                <a href=chapter/{{chapter.chapter_no}}/#contents">{{ chapter.chapter_no|add:',' }}</a>
                             {% endfor %}
                         </td>
                     </tr>
