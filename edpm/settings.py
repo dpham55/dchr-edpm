@@ -41,14 +41,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'ckeditor',
+    'ckeditor_uploader',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ckeditor',
-    'ckeditor_uploader',
     'issuances.apps.IssuancesConfig',
     'vimage.apps.VimageConfig',
     'algoliasearch_django',
@@ -145,12 +145,26 @@ CKEDITOR_CONFIGS = {
         'height': 150,
         'toolbar': 'EDPM',
         'toolbar_EDPM': [
-            ['Format', 'Bold', 'Italic', 'Underline'],
+            ['Format', 'Styles', 'Bold', 'Italic', 'Underline'],
             ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
             ['Table','NumberedList','BulletedList','Link','Unlink'],
             ['RemoveFormat','Source'],
         ],
         'contentsCss': ['/static/ckeditor/ckeditor/contents.css'],
+        'stylesSet': [
+            {
+                'name': 'Note Box' , 
+                'element': 'div', 
+                'styles': {
+                    'padding': '5px 10px', 
+                    'background': '#E4E3E2', 
+                    'border': '1px solid #ccc', 
+                    'width': '66%',
+                    'font-style': 'italic',
+                    'font-size': '12px'
+                    }
+            }
+        ],        
     }
 }
 

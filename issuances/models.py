@@ -147,6 +147,7 @@ class Attachment(models.Model):
 		blank = True,
 		null = True,
 		default = None,
+		verbose_name = 'Category',
 	)
 	attachType = models.CharField(
 		max_length = 50,
@@ -154,6 +155,7 @@ class Attachment(models.Model):
 		blank = True,
 		null = True,
 		default = None,
+		verbose_name = 'Type',
 	)
 
 	def __str__(self):

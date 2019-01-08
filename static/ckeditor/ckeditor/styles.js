@@ -21,7 +21,7 @@ CKEDITOR.stylesSet.add( 'default', [
 	// These styles are already available in the "Format" drop-down list ("format" plugin),
 	// so they are not needed here by default. You may enable them to avoid
 	// placing the "Format" combo in the toolbar, maintaining the same features.
-	/*
+
 	{ name: 'Paragraph',		element: 'p' },
 	{ name: 'Heading 1',		element: 'h1' },
 	{ name: 'Heading 2',		element: 'h2' },
@@ -31,16 +31,16 @@ CKEDITOR.stylesSet.add( 'default', [
 	{ name: 'Heading 6',		element: 'h6' },
 	{ name: 'Preformatted Text',element: 'pre' },
 	{ name: 'Address',			element: 'address' },
-	*/
+
 
 	{ name: 'Italic Title',		element: 'h2', styles: { 'font-style': 'italic' } },
 	{ name: 'Subtitle',			element: 'h3', styles: { 'color': '#aaa', 'font-style': 'italic' } },
 	{
-		name: 'Special Container',
+		name: 'Note',
 		element: 'div',
 		styles: {
 			padding: '5px 10px',
-			background: '#eee',
+			background: '#fff',
 			border: '1px solid #ccc'
 		}
 	},
