@@ -9,7 +9,7 @@ from .models import ChapterSection, Issuance
 class ChapterSectionIndex(AlgoliaIndex):
     fields = ('title', 'num', 'chapter', 'content')
     settings = {
-				'searchableAttributes': ['title','content',],
+				'searchableAttributes': ['title','content','num'],
 				'attributesForFaceting': ['chapter',]
     }
     index_name = 'Chapters'

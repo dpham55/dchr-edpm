@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('issuances.urls')),
+	url(r'^nested_admin/', include('nested_admin.urls')),    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

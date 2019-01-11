@@ -2,8 +2,6 @@ import datetime, re
 from django.db import models
 from django.utils import timezone
 from ckeditor.fields import RichTextField
-from adminsortable.models import SortableMixin
-from adminsortable.fields import SortableForeignKey
 
 # Create your models here.
 
@@ -30,19 +28,24 @@ class Chapter(models.Model):
 		return self.chaptersection_set.exclude(title__isnull=True).exclude(title__exact='')
 
 
-class ChapterSection(SortableMixin):
-	class Meta:
-		ordering = ['section_order']
-
+class ChapterSection(models.Model):
 	title = models.CharField(max_length=200, blank=True)
 	num = models.CharField('Section Number', unique=True, max_length=9)
-	chapter = SortableForeignKey(Chapter, on_delete=models.CASCADE)
+	chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE)
 	content = RichTextField(blank=True, null=True)
-
-	section_order = models.PositiveIntegerField(default = 0, editable=False, db_index=True)
 
 	def __str__(self):
 		return self.num
+
+
+class ChapterSubsection(models.Model):
+	section = models.ForeignKey(ChapterSection, on_delete=models.CASCADE)
+	num = models.CharField('Subsection Number', unique=True, max_length=9)
+	content = RichTextField(blank=True, null=True)
+
+	def __str__(self):
+		return self.section.title
+
 
 class Issuance(models.Model):
 	title = models.CharField(max_length=200)
@@ -162,15 +165,11 @@ class Attachment(models.Model):
 		return self.title
 
 
-class IssuanceContent(SortableMixin):
-	class Meta:
-		ordering = ['content_order']
-
+class IssuanceContent(models.Model):
 	header = models.CharField(max_length=150)
 	content = RichTextField()
-	issuance = SortableForeignKey(Issuance, related_name='issuance_content', on_delete=models.CASCADE)
+	issuance = models.ForeignKey(Issuance, related_name='issuance_content', on_delete=models.CASCADE)
 
-	content_order = models.PositiveIntegerField(default = 0, editable=False, db_index=True)
 	def __str__(self):
 		return self.header
 

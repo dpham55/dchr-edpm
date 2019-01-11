@@ -3,9 +3,9 @@ from django import forms
 from django.contrib import admin
 from ckeditor.widgets import CKEditorWidget
 from django.contrib.admin import SimpleListFilter
-from adminsortable.admin import NonSortableParentAdmin, SortableStackedInline
+import nested_admin
 
-from .models import Issuance, IssuanceContent, Chapter, Attachment, ChapterSection
+from .models import Issuance, IssuanceContent, Chapter, Attachment, ChapterSection, ChapterSubsection
 
 
 # Classes for CKEditor App/Plug-in
@@ -14,15 +14,24 @@ class ChapterSectionAdminForm(forms.ModelForm):
 	class meta:
 		model = ChapterSection
 
+
+class ChapterSubsectionAdminForm(forms.ModelForm):
+	content = forms.CharField(widget=CKEditorWidget())
+	class meta:
+		model = ChapterSubsection
+
+
 class IssuanceAdminForm(forms.ModelForm):
 	content = forms.CharField(widget=CKEditorWidget())
 	class meta:
 		model = Issuance
 
+
 class IssuanceContentAdminForm(forms.ModelForm):
 	content = forms.CharField(widget=CKEditorWidget())
 	class meta:
 		model = IssuanceContent
+
 
 # Admin stuff
 class ChapterInline(admin.TabularInline):
@@ -31,21 +40,33 @@ class ChapterInline(admin.TabularInline):
 	verbose_name = 'Related issuances/chapter'
 	verbose_name_plural = 'Related issuance/chapters'
 
-class ChapterSectionInline(SortableStackedInline):
+
+class ChapterSubsectionInline(nested_admin.NestedStackedInline):
+	model = ChapterSubsection
+	extra = 0
+	verbose_name = 'Subsection'
+	verbose_name_plural = 'Subsections'
+
+
+class ChapterSectionInline(nested_admin.NestedStackedInline):
 	model = ChapterSection
 	extra = 0
+	inlines = [ChapterSubsectionInline]
 	verbose_name = 'Section'
 	verbose_name_plural = 'Sections'
 
-class IssuanceContentInline(SortableStackedInline):
+
+class IssuanceContentInline(admin.StackedInline):
 	model = IssuanceContent
 	extra = 0
 	verbose_name = 'Issuance Section'
 	verbose_name_plural = 'Issuance Sections'
 
+
 class AttachmentInline(admin.TabularInline):
 	model = Attachment
 	extra = 0
+
 
 class ActiveFilter(SimpleListFilter):
 	title = 'currently active'
@@ -63,7 +84,7 @@ class ActiveFilter(SimpleListFilter):
 		if self.value() == 'No':
 			return queryset.exclude(expiration_date__gte=datetime.datetime.now().date()).exclude(expiration_date__isnull=True)
 
-class ChapterAdmin(NonSortableParentAdmin):
+class ChapterAdmin(nested_admin.NestedModelAdmin):
 	fieldsets = [
 		(None,						{'fields':['title','slug','chapter_no','description',]})
 	]
@@ -72,13 +93,7 @@ class ChapterAdmin(NonSortableParentAdmin):
 	prepopulated_fields = {'slug': ('title',)}
 
 
-class ChapterSectionAdmin(admin.ModelAdmin):
-	form = ChapterSectionAdminForm
-	fieldsets = [
-		(None,						{'fields':['title','num','content',]})
-	]
-
-class IssuanceAdmin(NonSortableParentAdmin):
+class IssuanceAdmin(admin.ModelAdmin):
 	# form var Req by CKEditor
 	#form = IssuanceAdminForm
 

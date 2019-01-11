@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'issuances.apps.IssuancesConfig',
     'vimage.apps.VimageConfig',
     'algoliasearch_django',
-    'adminsortable'
 ]
 
 MIDDLEWARE = [
