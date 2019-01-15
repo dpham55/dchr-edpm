@@ -10,7 +10,6 @@ from adminsortable.fields import SortableForeignKey
 class Chapter(models.Model):
 	title = models.CharField(max_length=200)
 	description = models.TextField(max_length=800, blank=True, null=True)
-	slug = models.SlugField(max_length=200, unique=True, null=True, verbose_name='Slug (do not edit)')
 	chapter_no = models.IntegerField(unique=True, null=True)
 
 	def __str__(self):
@@ -34,10 +33,10 @@ class ChapterSection(SortableMixin):
 	class Meta:
 		ordering = ['section_order']
 
-	title = models.CharField(max_length=200, blank=True)
-	num = models.CharField('Section Number', unique=True, max_length=9)
+	title = models.CharField(max_length=200, blank=True, null=True)
+	num = models.CharField('Section Number', blank=True, null=True, max_length=9)
 	chapter = SortableForeignKey(Chapter, on_delete=models.CASCADE)
-	content = RichTextField(blank=True, null=True)
+	content = RichTextField(blank=True, null=True, max_length=9999)
 
 	section_order = models.PositiveIntegerField(default = 0, editable=False, db_index=True)
 

@@ -65,12 +65,10 @@ class ActiveFilter(SimpleListFilter):
 
 class ChapterAdmin(NonSortableParentAdmin):
 	fieldsets = [
-		(None,						{'fields':['title','slug','chapter_no','description',]})
+		(None,						{'fields':['title','chapter_no','description',]})
 	]
 	inlines = [ChapterSectionInline]
 	list_display = ('chapter_no','title')
-	prepopulated_fields = {'slug': ('title',)}
-
 
 class ChapterSectionAdmin(admin.ModelAdmin):
 	form = ChapterSectionAdminForm
