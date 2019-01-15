@@ -11,6 +11,7 @@ class Chapter(models.Model):
 	title = models.CharField(max_length=200)
 	description = models.TextField(max_length=800, blank=True, null=True)
 	chapter_no = models.IntegerField(unique=True, null=True)
+	slug = models.SlugField(max_length=200, blank=True, null=True)
 
 	def __str__(self):
 		return str(self.chapter_no)
@@ -36,7 +37,7 @@ class ChapterSection(SortableMixin):
 	title = models.CharField(max_length=200, blank=True, null=True)
 	num = models.CharField('Section Number', blank=True, null=True, max_length=9)
 	chapter = SortableForeignKey(Chapter, on_delete=models.CASCADE)
-	content = RichTextField(blank=True, null=True, max_length=9999)
+	content = RichTextField(blank=True, null=True, max_length=19500)
 
 	section_order = models.PositiveIntegerField(default = 0, editable=False, db_index=True)
 
